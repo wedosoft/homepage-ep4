@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>위두소프트 | 비즈니스 혁신을 위한 스마트 솔루션 파트너</title>
+    <style>
+        :root {
+            --primary: #3284D6; /* 정확한 로고의 파란색 */
+            --primary-dark: #2470B8; /* 로고 파란색의 어두운 버전 */
+            --secondary: #6c757d;
+            --success: #28a745;
+            --light: #f8f9fa;
+            --dark: #383838; /* 정확한 로고의 회색 텍스트 색상 */
+            --white: #ffffff;
+            --gray-100: #f8f9fa;
+            --gray-200: #e9ecef;
+            --gray-300: #dee2e6;
+            --gray-800: #404040;
+        }
+        
+        /* 애니메이션 효과 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes slideInDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideUpDown {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        /* 애니메이션 적용 클래스 */
+        .animate-title {
+            animation: fadeInUp 1s ease-out forwards;
+        }
+        
+        .animate-text {
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+            opacity: 0;
+            animation-fill-mode: both;
+        }
+        
+        .animate-buttons {
+            animation: fadeInUp 1s ease-out 0.6s forwards;
+            opacity: 0;
+            animation-fill-mode: both;
+        }
+        
+        .solution-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .solution-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .solution-card:nth-child(1) {
+            animation: fadeInLeft 0.8s ease-out 0.3s forwards;
+            opacity: 0;
+            animation-fill-mode: both;
+        }
+        
+        .solution-card:nth-child(2) {
+            animation: fadeInUp 0.8s ease-out 0.5s forwards;
+            opacity: 0;
+            animation-fill-mode: both;
+        }
+        
+        .solution-card:nth-child(3) {
+            animation: fadeInRight 0.8s ease-out 0.7s forwards;
+            opacity: 0;
+            animation-fill-mode: both;
+        }
+        
+        .btn:hover {
+            animation: pulse 0.5s ease-in-out;
+        }
+        
+        .nav-menu > li > a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-menu > li > a::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        .nav-menu > li > a:hover::after {
+            width: 100%;
+        }
+        
+        .hero {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: slideUpDown 6s ease-in-out infinite;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -150px;
+            left: -150px;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            animation: slideUpDown 8s ease-in-out infinite reverse;
+        }
+        
+        .partner-logo {
+            transition: all 0.3s ease;
+        }
+        
+        .partner-logo:hover {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+        
+        /* 스크롤 애니메이션 - 실제 구현에서는 JavaScript와 함께 사용 */
+        .scroll-fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .scroll-fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* 메가메뉴 애니메이션 */
+        .mega-menu {
+            transform: translateY(10px);
+            transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+        }
+        
+        .nav-menu > li:hover .mega-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Noto Sans KR', sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .top-bar {
+            background-color: var(--gray-800);
+            padding: 8px 0;
+            color: var(--white);
+            font-size: 14px;
+        }
+        
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .top-bar-right {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .top-bar-right a {
+            color: var(--white);
+            font-size: 14px;
+        }
+        
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo img {
+            height: 40px;
+        }
+        
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        .nav-menu > li {
+            position: relative;
+            font-weight: 500;
+        }
+        
+        .nav-menu > li > a {
+            color: var(--dark);
+            padding: 10px 0;
+            display: inline-block;
+            transition: color 0.3s;
+        }
+        
+        .nav-menu > li > a:hover {
+            color: var(--primary);
+        }
+        
+        .contact-btn {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .contact-btn:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        /* Mega Menu */
+        .mega-menu {
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background-color: var(--white);
+            width: 800px;
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 100;
+        }
+        
+        .mega-menu.solutions {
+            left: -200px;
+        }
+        
+        .mega-menu.services {
+            left: -300px;
+        }
+        
+        .nav-menu > li:hover .mega-menu {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .mega-menu-column {
+            flex: 1;
+            padding: 0 15px;
+        }
+        
+        .mega-menu-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--gray-300);
+        }
+        
+        .mega-menu-items li {
+            margin-bottom: 12px;
+        }
+        
+        .mega-menu-items a {
+            color: var(--dark);
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+        
+        .mega-menu-items a:hover {
+            color: var(--primary);
+        }
+        
+        .mega-menu-featured {
+            background-color: var(--gray-100);
+            padding: 20px;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+        
+        .mega-menu-featured h4 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .mega-menu-featured p {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .featured-link {
+            color: var(--primary);
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #3284D6, #4a9de4);
+            color: var(--white);
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background-color: var(--white);
+            color: var(--primary);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--gray-200);
+        }
+        
+        .btn-outline {
+            border: 2px solid var(--white);
+            color: var(--white);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--white);
+            color: var(--primary);
+        }
+        
+        /* Solutions Section */
+        .solutions-section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .section-title p {
+            font-size: 16px;
+            color: var(--secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .solution-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .solution-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .solution-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .solution-icon svg {
+            width: 30px;
+            height: 30px;
+            fill: var(--white);
+        }
+        
+        .solution-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .solution-card p {
+            font-size: 15px;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        
+        .solution-card ul {
+            margin-bottom: 20px;
+        }
+        
+        .solution-card ul li {
+            font-size: 15px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .solution-card ul li:before {
+            content: "✓";
+            color: var(--success);
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .card-link {
+            color: var(--primary);
+            font-weight: 500;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-link svg {
+            width: 16px;
+            height: 16px;
+            margin-left: 5px;
+            transition: transform 0.3s;
+        }
+        
+        .card-link:hover svg {
+            transform: translateX(5px);
+        }
+        
+        /* Partners Section */
+        .partners-section {
+            padding: 60px 0;
+            background-color: var(--gray-100);
+        }
+        
+        .partners-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .partners-title h3 {
+            font-size: 24px;
+            color: var(--dark);
+        }
+        
+        .partners-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 50px;
+        }
+        
+        .partner-logo {
+            height: 40px;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+        
+        .partner-logo:hover {
+            opacity: 1;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            background-color: var(--primary);
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h4:after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+        
+        .footer-about p {
+            font-size: 14px;
+            margin-bottom: 20px;
+            color: var(--gray-300);
+        }
+        
+        .footer-contact li {
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: var(--gray-300);
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .footer-contact li svg {
+            margin-right: 10px;
+            min-width: 16px;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--gray-300);
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+        }
+        
+        .footer-subscribe p {
+            font-size: 14px;
+            margin-bottom: 15px;
+            color: var(--gray-300);
+        }
+        
+        .subscribe-form {
+            display: flex;
+        }
+        
+        .subscribe-input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            font-size: 14px;
+        }
+        
+        .subscribe-btn {
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 0 4px 4px 0;
+            padding: 0 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .subscribe-btn:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .footer-bottom {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            font-size: 14px;
+            color: var(--gray-300);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-link {
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+        
+        .social-link:hover {
+            background-color: var(--primary);
+        }
+        
+        .social-link svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--white);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            <div class="container">
+                <div class="top-bar-left">
+                    <span>📞 1234-5678</span>
+                </div>
+                <div class="top-bar-right">
+                    <a href="#" onclick="window.open('https://support.wedosoft.net', '_blank')">고객지원</a>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="main-header">
+                <a href="#" class="logo">
+                    <!-- 로고를 이미지로 추가 -->
+                    <img src="/api/placeholder/200/50" alt="WE DO SOFT 로고" style="height: 40px;">
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="#">홈</a></li>
+                    <li>
+                        <a href="#">솔루션</a>
+                        <div class="mega-menu solutions">
+                            <div class="mega-menu-column">
+                                <h3 class="mega-menu-title">고객 경험 관리</h3>
+                                <ul class="mega-menu-items">
+                                    <li><a href="#">Freshdesk</a></li>
+                                    <li><a href="#">Freshchat</a></li>
+                                    <li><a href="#">Freshsales</a></li>
+                                </ul>
+                                <div class="mega-menu-featured">
+                                    <h4>고객 경험을 혁신하세요</h4>
+                                    <p>옴니채널 고객 지원 솔루션으로 고객 만족도를 높이세요.</p>
+                                    <a href="#" class="featured-link">자세히 알아보기 →</a>
+                                </div>
+                            </div>
+                            <div class="mega-menu-column">
+                                <h3 class="mega-menu-title">업무 생산성</h3>
+                                <ul class="mega-menu-items">
+                                    <li><a href="#">Google Workspace</a></li>
+                                    <li><a href="#">Monday.com</a></li>
+                                </ul>
+                                <div class="mega-menu-featured">
+                                    <h4>협업의 새로운 방식</h4>
+                                    <p>클라우드 기반 협업 도구로 팀 생산성을 높이세요.</p>
+                                    <a href="#" class="featured-link">자세히 알아보기 →</a>
+                                </div>
+                            </div>
+                            <div class="mega-menu-column">
+                                <h3 class="mega-menu-title">IT 인프라</h3>
+                                <ul class="mega-menu-items">
+                                    <li><a href="#">Freshservice</a></li>
+                                    <li><a href="#">Splashtop</a></li>
+                                </ul>
+                                <div class="mega-menu-featured">
+                                    <h4>IT 서비스 최적화</h4>
+                                    <p>효율적인 IT 서비스 관리와 원격 접속 솔루션을 경험하세요.</p>
+                                    <a href="#" class="featured-link">자세히 알아보기 →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#">서비스</a>
+                        <div class="mega-menu services">
+                            <div class="mega-menu-column">
+                                <h3 class="mega-menu-title">전문 서비스</h3>
+                                <ul class="mega-menu-items">
+                                    <li><a href="#">컨설팅</a></li>
+                                    <li><a href="#">구축 및 마이그레이션</a></li>
+                                    <li><a href="#">교육 및 기술지원</a></li>
+                                    <li><a href="#">유지보수</a></li>
+                                </ul>
+                            </div>
+                            <div class="mega-menu-column">
+                                <h3 class="mega-menu-title">산업별 솔루션</h3>
+                                <ul class="mega-menu-items">
+                                    <li><a href="#">제조/물류</a></li>
+                                    <li><a href="#">금융/보험</a></li>
+                                    <li><a href="#">소매/유통</a></li>
+                                    <li><a href="#">교육</a></li>
+                                    <li><a href="#">의료/헬스케어</a></li>
+                                </ul>
+                            </div>
+                            <div class="mega-menu-column">
+                                <div class="mega-menu-featured" style="margin-top: 0;">
+                                    <h4>맞춤형 서비스</h4>
+                                    <p>비즈니스 니즈에 맞춘 최적의 솔루션과 서비스를 제공합니다.</p>
+                                    <a href="#" class="featured-link">서비스 소개서 다운로드 →</a>
+                                </div>
+                                <div class="mega-menu-featured">
+                                    <h4>성공적인 구축 사례</h4>
+                                    <p>다양한 산업의 고객 성공 사례를 확인하세요.</p>
+                                    <a href="#" class="featured-link">성공 사례 보기 →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="#">성공사례</a></li>
+                    <li><a href="#">회사소개</a></li>
+                    <li><a href="#">문의하기</a></li>
+                </ul>
+                <a href="#" class="contact-btn">상담 신청</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="animate-title">비즈니스 혁신을 위한 스마트 솔루션 파트너</h1>
+            <p class="animate-text">글로벌 SaaS 솔루션과 전문 컨설팅으로 기업의 디지털 혁신과 성장을 지원합니다.</p>
+            <div class="hero-buttons animate-buttons">
+                <a href="#" class="btn btn-primary">솔루션 상담 신청</a>
+                <a href="#" class="btn btn-outline">데모 체험하기</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section class="solutions-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>비즈니스 성장을 위한 핵심 솔루션</h2>
+                <p>비즈니스 니즈에 맞는 최적의 솔루션으로 디지털 혁신을 경험하세요.</p>
+            </div>
+            <div class="solutions-grid">
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 9h-2V5h2v6zm0 4h-2v-2h2v2z"/>
+                        </svg>
+                    </div>
+                    <h3>고객 경험 혁신</h3>
+                    <p>옴니채널 고객 지원과, 영업 자동화로 고객 만족도를 높이세요.</p>
+                    <ul>
+                        <li>통합 고객 지원 플랫폼</li>
+                        <li>AI 기반 자동화 서비스</li>
+                        <li>실시간 성과 분석</li>
+                    </ul>
+                    <a href="#" class="card-link">
+                        자세히 보기
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 2h1.5v3l2-3h1.7l-2 3 2 3h-1.7l-2-3v3H12V5zM7 7.25h2.5V6.5H7V5h4v3.75H8.5v.75H11V11H7V7.25zM19 13l-6 6-4-4-4 4v-2.5l4-4 4 4 6-6V13z"/>
+                        </svg>
+                    </div>
+                    <h3>팀 협업 & 생산성</h3>
+                    <p>클라우드 기반 협업 도구로 팀 생산성과 효율성을 높이세요.</p>
+                    <ul>
+                        <li>실시간 문서 공동 작업</li>
+                        <li>직관적인 프로젝트 관리</li>
+                        <li>업무 프로세스 자동화</li>
+                    </ul>
+                    <a href="#" class="card-link">
+                        자세히 보기
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M15 9H9v6h6V9zm-2 4h-2v-2h2v2zm8-2V9h-2V7c0-1.1-.9-2-2-2h-2V3h-2v2h-2V3H9v2H7c-1.1 0-2 .9-2 2v2H3v2h2v2H3v2h2v2c0 1.1.9 2 2 2h2v2h2v-2h2v2h2v-2h2c1.1 0 2-.9 2-2v-2h2v-2h-2v-2h2zm-4 6H7V7h10v10z"/>
+                        </svg>
+                    </div>
+                    <h3>IT 인프라 최적화</h3>
+                    <p>효율적인 IT 서비스 관리와 원격 접속으로 운영 효율을 높이세요.</p>
+                    <ul>
+                        <li>IT 자산 통합 관리</li>
+                        <li>안전한 원격 접속 및 지원</li>
+                        <li>클라우드 기반 확장성</li>
+                    </ul>
+                    <a href="#" class="card-link">
+                        자세히 보기
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="partners-section">
+        <div class="container">
+            <div class="partners-title scroll-fade-in">
+                <h3>글로벌 솔루션 파트너</h3>
+            </div>
+            <div class="partners-logo scroll-fade-in">
+                <img src="/api/placeholder/150/50" alt="Freshworks" class="partner-logo">
+                <img src="/api/placeholder/150/50" alt="Google Workspace" class="partner-logo">
+                <img src="/api/placeholder/150/50" alt="Splashtop" class="partner-logo">
+                <img src="/api/placeholder/150/50" alt="Monday.com" class="partner-logo">
+            </div>
+        </div>
+    </section>
+    
+    <!-- 스크롤 애니메이션을 위한 간단한 JavaScript -->
+    <script>
+        // 페이지 로드 시 실행
+        document.addEventListener('DOMContentLoaded', function() {
+            // 스크롤 애니메이션 요소들
+            const scrollElements = document.querySelectorAll('.scroll-fade-in');
+            
+            // 초기 화면에 보이는 요소들 체크
+            checkElements();
+            
+            // 스크롤 이벤트 리스너
+            window.addEventListener('scroll', function() {
+                checkElements();
+            });
+            
+            // 요소가 화면에 보이는지 확인하는 함수
+            function checkElements() {
+                scrollElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150; // 요소가 150px 이내로 들어오면 표시
+                    
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.classList.add('visible');
+                    }
+                });
+            }
+        });
+    </script>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>비즈니스 혁신을 시작하세요</h2>
+            <p>위두소프트의 전문 컨설팅과 글로벌 솔루션으로 디지털 혁신을 가속화하세요.</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn btn-primary">무료 상담 신청</a>
+                <a href="#" class="btn btn-outline">솔루션 소개서 다운로드</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column footer-about">
+                    <h4>위두소프트</h4>
+                    <p>위두소프트는 글로벌 SaaS 솔루션과 맞춤형 IT 컨설팅을 제공하는 기업입니다. 비즈니스의 생산성을 높이고, 협업을 강화하며, IT 환경을 최적화하는 것이 우리의 목표입니다.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 16h-2v-6h2v6zm-1-6.891c-.607 0-1.1-.496-1.1-1.109 0-.612.492-1.109 1.1-1.109s1.1.497 1.1 1.109c0 .613-.493 1.109-1.1 1.109zm8 6.891h-1.998v-2.861c0-1.881-2.002-1.722-2.002 0v2.861h-2v-6h2v1.093c.872-1.616 4-1.736 4 1.548v3.359z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M7.799 0h8.4c4.302 0 7.801 3.498 7.801 7.801v8.398c0 4.302-3.498 7.801-7.801 7.801h-8.4c-4.302 0-7.799-3.498-7.799-7.801v-8.398c0-4.302 3.498-7.801 7.799-7.801zm.201 2c-3.314 0-6 2.686-6 6v8c0 3.314 2.686 6 6 6h8c3.314 0 6-2.686 6-6v-8c0-3.314-2.686-6-6-6h-8zm8 1.5c.828 0 1.5.672 1.5 1.5s-.672 1.5-1.5 1.5-1.5-.672-1.5-1.5.672-1.5 1.5-1.5zm-4 2.5c2.761 0 5 2.239 5 5s-2.239 5-5 5-5-2.239-5-5 2.239-5 5-5zm0 2c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm4.441 16.892c-2.102.144-6.784.144-8.883 0-2.276-.156-2.541-1.27-2.558-4.892.017-3.629.285-4.736 2.558-4.892 2.099-.144 6.782-.144 8.883 0 2.277.156 2.541 1.27 2.559 4.892-.018 3.629-.285 4.736-2.559 4.892zm-6.441-7.234l4.917 2.338-4.917 2.346v-4.684z"/>
+                            </svg>
+                        </a>
+                    </div>
+                

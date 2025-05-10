@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>위두소프트 | 고객 경험 관리 솔루션</title>
+    <style>
+        :root {
+            --primary: #3284D6;
+            --primary-dark: #2470B8;
+            --primary-light: #5BA1E6;
+            --primary-very-light: #E5F0FA;
+            --secondary: #6c757d;
+            --success: #28a745;
+            --warning: #F5A623;
+            --info: #17a2b8;
+            --accent1: #FF6B6B;
+            --accent2: #4ECDC4;
+            --light: #f8f9fa;
+            --dark: #383838;
+            --white: #ffffff;
+            --gray-100: #f8f9fa;
+            --gray-200: #e9ecef;
+            --gray-300: #dee2e6;
+            --gray-800: #404040;
+            --freshdesk: #0063bc;
+            --freshchat: #00b791;
+            --freshcaller: #f96825;
+            --freshsales: #36b37e;
+            --freddy-ai: #7f3e98;
+            --freshservice: #00b4ff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Noto Sans KR', sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--white);
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* 애니메이션 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes floatAnimation {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* 헤더 & 내비게이션 */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .top-bar {
+            background-color: var(--gray-800);
+            padding: 8px 0;
+            color: var(--white);
+            font-size: 14px;
+        }
+        
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .top-bar-right a {
+            color: var(--white);
+            margin-left: 15px;
+        }
+        
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo img {
+            height: 40px;
+        }
+        
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        .nav-menu > li {
+            position: relative;
+            font-weight: 500;
+        }
+        
+        .nav-menu > li > a {
+            color: var(--dark);
+            padding: 10px 0;
+            display: inline-block;
+            transition: color 0.3s;
+        }
+        
+        .nav-menu > li > a:hover {
+            color: var(--primary);
+        }
+        
+        .contact-btn {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .contact-btn:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        /* 히어로 섹션 */
+        .hero {
+            padding: 160px 0 100px;
+            background: linear-gradient(135deg, #3284D6, #4a9de4);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: floatAnimation 6s infinite ease-in-out;
+        }
+        
+        .hero-content {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease-out forwards;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+            opacity: 0;
+            animation-fill-mode: both;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            animation: fadeInUp 1s ease-out 0.6s forwards;
+            opacity: 0;
+            animation-fill-mode: both;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: inline-block;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background-color: var(--white);
+            color: var(--primary);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--gray-200);
+        }
+        
+        .btn-outline {
+            border: 2px solid var(--white);
+            color: var(--white);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--white);
+            color: var(--primary);
+        }
+        
+        /* 고객 여정 섹션 */
+        .journey-section {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .section-title p {
+            font-size: 16px;
+            color: var(--secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .journey-container {
+            margin-top: 60px;
+            position: relative;
+        }
+        
+        .journey-path {
+            position: relative;
+            height: 100px;
+            margin-bottom: 30px;
+        }
+        
+        .journey-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-light), var(--primary));
+            transform: translateY(-50%);
+        }
+        
+        .journey-stages {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+        }
+        
+        .journey-stage {
+            text-align: center;
+            width: 16%;
+            position: relative;
+        }
+        
+        .journey-dot {
+            width: 20px;
+            height: 20px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .journey-stage-name {
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .journey-stage-desc {
+            font-size: 14px;
+            color: var(--secondary);
+        }
+        
+        .journey-solutions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .journey-solution {
+            width: 16%;
+            text-align: center;
+            padding: 15px 10px;
+            border-radius: 8px;
+            background-color: var(--gray-100);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+        
+        .journey-solution:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .solution-icon {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 10px;
+        }
+        
+        .solution-name {
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        /* Freshdesk Omni 섹션 */
+        .omni-section {
+            padding: 80px 0;
+            background-color: var(--gray-100);
+        }
+        
+        .omni-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .omni-image {
+            position: relative;
+        }
+        
+        .omni-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .omni-content h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: var(--freshdesk);
+        }
+        
+        .omni-content p {
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        
+        .feature-list {
+            margin: 25px 0;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .feature-icon {
+            width: 24px;
+            height: 24px;
+            background-color: var(--freshdesk);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+        
+        .feature-icon svg {
+            width: 14px;
+            height: 14px;
+            fill: var(--white);
+        }
+        
+        .feature-text {
+            flex: 1;
+        }
+        
+        .feature-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .feature-desc {
+            font-size: 14px;
+            color: var(--secondary);
+        }
+        
+        .addon-box {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-top: 30px;
+        }
+        
+        .addon-title {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--freshdesk);
+        }
+        
+        .addon-items {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .addon-item {
+            background-color: var(--gray-100);
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .addon-item:hover {
+            background-color: var(--freshdesk);
+            color: var(--white);
+        }
+        
+        /* 제품 탭 섹션 */
+        .products-section {
+            padding: 80px 0;
+        }
+        
+        .tab-container {
+            margin-top: 40px;
+        }
+        
+        .tab-nav {
+            display: flex;
+            border-bottom: 1px solid var(--gray-300);
+            margin-bottom: 30px;
+        }
+        
+        .tab-button {
+            padding: 12px 25px;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            margin-right: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--secondary);
+            transition: all 0.3s;
+        }
+        
+        .tab-button.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+        
+        .tab-button:hover {
+            color: var(--primary);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .product-image {
+            position: relative;
+        }
+        
+        .product-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-features {
+            padding: 20px;
+        }
+        
+        .product-features h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .product-features p {
+            margin-bottom: 20px;
+        }
+        
+        .feature-list li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .feature-list li:before {
+            content: "✓";
+            color: var(--success);
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .use-cases {
+            margin-top: 40px;
+        }
+        
+        .use-case-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        .use-case-card {
+            background-color: var(--gray-100);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .use-case-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 15px;
+        }
+        
+        .use-case-name {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .use-case-desc {
+            font-size: 14px;
+            color: var(--secondary);
+        }
+        
+        /* AI 역량 섹션 */
+        .ai-section {
+            padding: 80px 0;
+            background-color: var(--gray-100);
+        }
+        
+        .ai-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .ai-content h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: var(--freddy-ai);
+        }
+        
+        .ai-content p {
+            margin-bottom: 20px;
+        }
+        
+        .ai-features {
+            margin-top: 30px;
+        }
+        
+        .ai-feature {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        
+        .ai-feature-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--freddy-ai);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .ai-feature-icon img {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .ai-feature-content {
+            flex: 1;
+        }
+        
+        .ai-feature-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .ai-feature-desc {
+            font-size: 14px;
+            color: var(--secondary);
+        }
+        
+        .ai-image {
+            position: relative;
+        }
+        
+        .ai-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 통합 시너지 섹션 */
+        .synergy-section {
+            padding: 80px 0;
+        }
+        
+        .synergy-flow {
+            margin-top: 50px;
+            position: relative;
+        }
+        
+        .synergy-diagram {
+            width: 100%;
+            height: 300px;
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        
+        .synergy-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin: 0 auto 20px;
+        }
+        
+        .synergy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .synergy-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .synergy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .synergy-card h4 {
+            font-size: 20px;
+            margin: 15px 0;
+        }
+        
+        .synergy-card p {
+            font-size: 14px;
+            color: var(--secondary);
+        }
+        
+        /* 에코시스템 섹션 */
+        .ecosystem-section {
+            padding: 80px 0;
+            background-color: var(--gray-100);
+        }
+        
+        .ecosystem-features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .ecosystem-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .ecosystem-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .ecosystem-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+        }
+        
+        .ecosystem-card h4 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .ecosystem-card p {
+            font-size: 14px;
+            color: var(--secondary);
+        }
+        
+        /* CTA 섹션 */
+        .cta-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #3284D6, #4a9de4);
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .cta-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .cta-section h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        /* 푸터 */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h4:after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+        
+        .footer-about p {
+            font-size: 14px;
+            margin-bottom: 20px;
+            color: var(--gray-300);
+        }
+        
+        .footer-contact li {
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: var(--gray-300);
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .footer-contact li svg {
+            margin-right: 10px;
+            min-width: 16px;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--gray-300);
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+        }
+        
+        .footer-bottom {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            font-size: 14px;
+            color: var(--gray-300);
+        }
+    </style>
+</head>
+<body>
+    <!-- 헤더 -->
+    <header>
+        <div class="top-bar">
+            <div class="container">
+                <div class="top-bar-left">
+                    <span>📞 1234-5678</span>
+                </div>
+                <div class="top-bar-right">
+                    <a href="#" onclick="window.open('https://support.wedosoft.net', '_blank')">고객지원</a>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="main-header">
+                <a href="#" class="logo">
+                    <img src="/api/placeholder/200/50" alt="WE DO SOFT 로고">
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="#">홈</a></li>
+                    <li><a href="#">솔루션</a></li>
+                    <li><a href="#">서비스</a></li>
+                    <li><a href="#">성공사례</a></li>
+                    <li><a href="#">회사소개</a></li>
+                    <li><a href="#">문의하기</a></li>
+                </ul>
+                <a href="#" class="contact-btn">상담 신청</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 히어로 섹션 -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>완벽한 고객 경험 관리를 위한 올인원 솔루션</h1>
+                <p>고객과의 모든 접점에서 최상의 경험을 제공하고, 고객 만족도와 충성도를 높이는 Freshworks 솔루션을 만나보세요.</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-primary">솔루션 데모 신청</a>
+                    <a href="#" class="btn btn-outline">솔루션 가이드 다운로드</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 고객 여정 섹션 -->
+    <section class="journey-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>고객 여정 전체를 아우르는 완벽한 솔루션</h2>
+                <p>고객이 브랜드를 인지하고, 구매하고, 지원받는 전체 여정에서 최상의 경험을 제공하기 위한 통합 솔루션을 제공합니다.</p>
+            </div>
+            
+            <div class="journey-container">
+                <div class="journey-path">
+                    <div class="journey-line"></div>
+                    <div class="journey-stages">
+                        <div class="journey-stage">
+                            <div class="journey-dot"></div>
+                            <div class="journey-stage-name">인지</div>
+                            <div class="journey-stage-desc">브랜드 발견</div>
+                        </div>
+                        <div class="journey-stage">
+                            <div class="journey-dot"></div>
+                            <div class="journey-stage-name">고려</div>
+                            <div class="journey-stage-desc">정보 탐색</div>
+                        </div>
+                        <div class="journey-stage">
+                            <div class="journey-dot"></div>
+                            <div class="journey-stage-name">구매</div>
+                            <div class="journey-stage-desc">결제 완료</div>
+                        </div>
+                        <div class="journey-stage">
+                            <div class="journey-dot"></div>
+                            <div class="journey-stage-name">사용</div>
+                            <div class="journey-stage-desc">제품/서비스 활용</div>
+                        </div>
+                        <div class="journey-stage">
+                            <div class="journey-dot"></div>
+                            <div class="journey-stage-name">지원</div>
+                            <div class="journey-stage-desc">문제 해결</div>
+                        </div>
+                        <div class="journey-stage">
+                            <div class="journey-dot"></div>
+                            <div class="journey-stage-name">충성</div>
+                            <div class="journey-stage-desc">재구매/추천</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="journey-solutions">
+                    <div class="journey-solution">
+                        <img src="/api/placeholder/50/50" alt="Freshsales" class="solution-icon">
+                        <div class="solution-name">Freshsales</div>
+                    </div>
+                    <div class="journey-solution">
+                        <img src="/api/placeholder/50/50" alt="Freshchat" class="solution-icon">
+                        <div class="solution-name">Freshchat</div>
+                    </div>
+                    <div class="journey-solution">
+                        <img src="/api/placeholder/50/50" alt="Freshsales" class="solution-icon">
+                        <div class="solution-name">Freshsales</div>
+                    </div>
+                    <div class="journey-solution">
+                        <img src="/api/placeholder/50/50" alt="Freshcaller" class="solution-icon">
+                        <div class="solution-name">Freshcaller</div>
+                    </div>
+                    <div class="journey-solution">
+                        <img src="/api/placeholder/50/50" alt="Freshdesk" class="solution-icon">
+                        <div class="solution-name">Freshdesk</div>
+                    </div>
+                    <div class="journey-solution">
+                        <img src="/api/placeholder/50/50" alt="Freshdesk Omni" class="solution-icon">
+                        <div class="solution-name">Freshdesk Omni</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Freshdesk Omni 섹션 -->
+    <section class="omni-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>올인원 고객 경험 플랫폼</h2>
+                <p>Freshdesk Omni는 모든 고객 접점을 통합하여 일관된 고객 경험을 제공하는 올인원 플랫폼입니다.</p>
+            </div>
+            
+            <div class="omni-grid">
+                <div class="omni-image">
+                    <img src="/api/placeholder/540/360" alt="Freshdesk Omni 대시보드">
+                </div>
+                <div class="omni-content">
+                    <h3>Freshdesk Omni</h3>
+                    <p>Freshdesk Omni는 고객 지원 솔루션(Freshdesk)과 실시간 메시징 플랫폼(Freshchat)이 기본으로 번들된 통합 고객 경험 관리 플랫폼입니다. 다양한 채널에서 유입되는 고객 문의를 효율적으로 관리하고, 개인화된 서비스를 제공합니다.</p>
+                    
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z" fill="white"/>
+                                </svg>
+                            </div>
+                            <div class="feature-text">
+                                <div class="feature-title">옴니채널 고객 지원</div>
+                                <div class="feature-desc">이메일, 전화, 채팅, 소셜 미디어 등 모든 채널에서 유입되는 고객 문의를 단일 인터페이스에서 관리합니다.</div>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M19 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h4l3 3 3-3h4c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z" fill="white"/>
+                                </svg>
+                            </div>
+                            <div class="feature-text">
+                                <div class="feature-title">실시간 고객 메시징</div>
+                                <div class="feature-desc">웹사이트, 모바일 앱, WhatsApp 등 다양한 채널에서 고객과 실시간으로 소통할 수 있습니다.</div>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="white"/>
+                                </svg>
+                            </div>
+                            <div class="feature-text">
+                                <div class="feature-title">통합 고객 프로필</div>
+                                <div class="feature-desc">모든 채널에서의 고객 상호작용 이력을 통합하여 360도 고객 뷰를 제공합니다.</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="addon-box">
+                        <div class="addon-title">확장 가능한 애드온</div>
+                        <div class="addon-items">
+                            <div class="addon-item">Freshsales</div>
+                            <div class="addon-item">Freshcaller</div>
+                            <div class="addon-item">Freddy AI</div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 30px;">
+                        <a href="#" class="btn btn-primary" style="background-color: var(--freshdesk); color: var(--white);">데모 신청하기</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 제품 탭 섹션 -->
+    <section class="products-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>고객 경험 관리 솔루션</h2>
+                <p>각 제품의 특징과 주요 기능을 살펴보세요.</p>
+            </div>
+            
+            <div class="tab-container">
+                <div class="tab-nav">
+                    <button class="tab-button active" data-tab="freshdesk">Freshdesk</button>
+                    <button class="tab-button" data-tab="freshchat">Freshchat</button>
+                    <button class="tab-button" data-tab="freshcaller">Freshcaller</button>
+                    <button class="tab-button" data-tab="freshsales">Freshsales</button>
+                </div>
+                
+                <!-- Freshdesk 탭 -->
+                <div id="freshdesk" class="tab-content active">
+                    <div class="product-grid">
+                        <div class="product-image">
+                            <img src="/api/placeholder/540/360" alt="Freshdesk 대시보드">
+                        </div>
+                        <div class="product-features">
+                            <h3>Freshdesk - 헬프데스크 솔루션</h3>
+                            <p>Freshdesk는 다양한 채널을 통합하고 AI를 활용한 자동화로 고객 지원팀의 업무 효율성과 고객 만족도를 높이는 클라우드 기반 헬프데스크 솔루션입니다.</p>
+                            
+                            <ul class="feature-list">
+                                <li>옴니채널 티켓팅 시스템</li>
+                                <li>지능형 자동화 및 워크플로우</li>
+                                <li>셀프 서비스 포털 및 지식 베이스</li>
+                                <li>고객 만족도 측정 및 보고서</li>
+                                <li>다양한 통합 기능</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="use-cases">
+                        <div class="use-case-title">주요 활용 사례</div>
+                        <div class="use-case-grid">
+                            <div class="use-case-card">
+                                <img src="/api/placeholder/60/60" alt="고객 지원" class="use-case-icon">
+                                <div class="use-case-name">고객 지원 센터</div>
+                                <div class="use-case-desc">다양한 채널에서 유입되는 문의를 효율적으로 관리하고 해결합니다.</div>
+                            </div>
+                            <div class="use-case-card">
+                                <img src="/api/placeholder/60/60" alt="지식 관리" class="use-case-icon">
+                                <div class="use-case-name">지식 관리</div>
+                                <div class="use-case-desc">셀프 서비스 포털과 지식 베이스로 고객이 직접 해결할 수 있도록 지원합니다.</div>
+                            </div>
+                            <div class="use-case-card">
+                                <img src="/api/placeholder/60/60" alt="프로세스 자동화" class="use-case-icon">
+                                <div class="use-case-name">프로세스 자동화</div>
+                                <div class="use-case-desc">반복적인 업무를 자동화하여 지원팀의 생산성을 높입니다.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Freshchat 탭 -->
+                <div id="freshchat" class="tab-content">
+                    <div class="product-grid">
+                        <div class="product-image">
+                            <img src="/api/placeholder/540/360" alt="Freshchat 인터페이스">
+                        </div>
+                        <div class="product-features">
+                            <h3>Freshchat - 고객 메시징 플랫폼</h3>
+                            <p>Freshchat은 웹사이트, 모바일 앱, WhatsApp 등 다양한 채널에서 고객과 실시간으로 소통할 수 있는 메시징 플랫폼입니다. Freddy AI 에이전트를 포함하여 자동화된 응대가 가능합니다.</p>
+                            
+                            <ul class="feature-list">
+                                <li>다중 채널 메시징</li>
+                                <li>AI 챗봇(Freddy AI)</li>
+                                <li>프로액티브 메시지 및 캠페인</li>
+                                <li>팀 협업 도구</li>
+                                <li>고급 분석 및 보고서</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="use-cases">
+                        <div class="use-case-title">주요 활용 사례</div>
+                        <div class="use-case-grid">
+                            <div class="use-case-card">
+                                <img src="/api/placeholder/60/60" alt="실시간 상담" class="use-case-icon">
+                                <div class="use-case-name">실시간 고객 상담</div>
+                                <div class="use-case-desc">웹사이트 방문자와 실시간으로 소통하여 문의에 응답하고 구매 전환을 유도합니다.</div>
+                            </div>
+                            <div class="use-case-card">
+                                <img src="/api/placeholder/60/60" alt="AI 자동응답" class="use-case-icon">
+                                <div class="use-case-name">AI 자동 응답</div>
+                                <div class="use-case-desc">24/7 자동화된 응답으로 고객 문의를 즉시 해결하고 상담사 업무를 줄입니다.</div>
+                            </div>
+                            <div class="use-case-card">
+                                <img src="/api/placeholder/60/60" alt="프로액티브 메시징" class="use-case-icon">
+                                <div class="use-case-name">프로액티브 메시징</div>
+                                <div class="use-case-desc">고객 행동에 기반한 맞춤형 메시지로 인게이지먼트와 전환율을 높입니다.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Freshcaller 탭 -->
+                <div id="freshcaller" class="tab-content">
+                    <div class="product-grid">
+                        <div class="product-image">
+                            <img src="/api/placeholder/540/360" alt="Freshcaller 인터페이스">
+                        </div>
+                        <div class="product-features">
+                            <h3>Freshcaller - 클라우드 CTI 솔루션</h3>
+                            <p>Freshcaller는 하드웨어 설치 없이 빠르게 구축 가능한 클라우드 기반 콜센터 솔루션입니다. 고객 통화를 효율적으로 관리하고 Freshdesk와 통합하여 일관된 고객 경험을 제공합니다.</p>
+                            
+                            <ul class="feature-list">
+                                <li>클라우드 기반 콜센터 시스템</li>
+                                <li>IVR 및 통화 라우팅</li>
+                                <li>통화 모니터링 및 분석</li>
+                                <li>글로벌 번호 및 다국어 지원</li>
+                                <li>Freshdesk 통합</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="use-cases">
+                        <div class="use-case-title">주요 활용 사례</div>
+                        <div class="use-case-grid">
+                            <div class="use-case-card">
+                                <img src="/api/placeholder/60/60" alt="콜센터" class="use-case-icon">
+                                <div class="use-case-name">클라우드 콜센터</div>
+                                <div class="use-case-desc">하드웨어 없이 신속하게 고객 지원 콜센터를 구축하고 운영합니다.</div>
+                            </div>
+                            <div class="use-case-card">
+                                <img src="/api/placeholder/60/60" alt="원격근무" class="use-case-icon">
+                                <div class="use-case-name">원격 근무 지원</div>
+                                <div class="use-case-desc">상담사가 어디서나 업무를 수행할 수 있는 클라우드 환경을 제공합니다.</div>
+                            </div>
+                            <div class="use-case-card">
+                                <img src="/api/placeholder/60/60" alt="통합통신" class="use-case-icon">
+                                <div class="use-case-name">통합 고객 통신</div>
+                                <div class="use-case-desc">음성 채널과 다른 소통 채널을 통합하여 일관된 고객 경험을 제공합니다.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Freshsales 탭 -->
+                <div id="freshsales" class="tab-content">
+                    <div class="product-grid">
+                        <div class="product-image">
+                            <img src="/api/placeholder/540/360" alt="Freshsales 대시보드">
+                        </div>
+                        <div class="product-features">
+                            <h3>Freshsales - 영업 자동화 CRM</h3>
+                            <p>Freshsales는 영업 팀이 잠재 고객을 효과적으로 관리하고 거래를 성사시키는데 필요한 모든 도구를 제공하는 클라우드 기반 CRM입니다.</p>
+                            
+                            <ul class="feature-list">
+                                <li>리드 스코어링 및 관리</li>
+                                <li>영업 파이프라인 관리</li>
+                                <li>AI 기반 예측 및 인사이트</li>
+                                <li>이메일 및 전화 통합</li>
+                                <li>자동화된 워크플로우</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="use-cases">
+                        <div class="use-case-title">주요 활용 사례</div>
+                        <div class="use-case-grid">
+                            <div class="use-case-card">
+                                <img src="/api/placeholder/60/60" alt="리드관리" class="use-case-icon">
+                                <div class="use-case-name">리드 관리</div>
+                                <div class="use-case-desc">잠재 고객을 효과적으로 관리하고 점수화하여 우선순위를 정합니다.</div>
+                            </div>
+                            <div class="use-case-card">
+                                <img src="/api/placeholder/60/60" alt="영업관리" class="use-case-icon">
+                                <div class="use-case-name">영업 파이프라인</div>
+                                <div class="use-case-desc">거래 단계를 시각적으로 관리하고 예측 가능한 영업 활동을 수행합니다.</div>
+                            </div>
+                            <div class="use-case-card">
+                                <img src="/api/placeholder/60/60" alt="마케팅자동화" class="use-case-icon">
+                                <div class="use-case-name">마케팅 자동화</div>
+                                <div class="use-case-desc">이메일 캠페인을 자동화하고 마케팅 활동의 효과를 측정합니다.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI 역량 섹션 -->
+    <section class="ai-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Freddy AI로 고객 경험 혁신</h2>
+                <p>인공지능의 힘으로 고객 경험을 한 단계 업그레이드하세요.</p>
+            </div>
+            
+            <div class="ai-container">
+                <div class="ai-content">
+                    <h3>Freddy AI Co-pilot</h3>
+                    <p>Freddy AI는 Freshworks 제품군 전체에 통합된 AI 기반 어시스턴트로, 고객 데이터를 분석하고 자동화된 인사이트를 제공하여 업무 효율성을 높여줍니다.</p>
+                    
+                    <div class="ai-features">
+                        <div class="ai-feature">
+                            <div class="ai-feature-icon">
+                                <img src="/api/placeholder/20/20" alt="AI 아이콘">
+                            </div>
+                            <div class="ai-feature-content">
+                                <div class="ai-feature-title">자동화된 응답</div>
+                                <div class="ai-feature-desc">AI 챗봇이 반복적인 고객 문의를 자동으로 처리하고, 필요시 상담사에게 인계합니다.</div>
+                            </div>
+                        </div>
+                        <div class="ai-feature">
+                            <div class="ai-feature-icon">
+                                <img src="/api/placeholder/20/20" alt="AI 아이콘">
+                            </div>
+                            <div class="ai-feature-content">
+                                <div class="ai-feature-title">예측 분석</div>
+                                <div class="ai-feature-desc">고객 행동과 패턴을 분석하여 이탈 가능성, 구매 가능성 등을 예측합니다.</div>
+                            </div>
+                        </div>
+                        <div class="ai-feature">
+                            <div class="ai-feature-icon">
+                                <img src="/api/placeholder/20/20" alt="AI 아이콘">
+                            </div>
+                            <div class="ai-feature-content">
+                                <div class="ai-feature-title">업무 자동화</div>
+                                <div class="ai-feature-desc">반복적인 작업을 자동화하고 직원들이 가치 있는 업무에 집중할 수 있도록 지원합니다.</div>
+                            </div>
+                        </div>
+                        <div class="ai-feature">
+                            <div class="ai-feature-icon">
+                                <img src="/api/placeholder/20/20" alt="AI 아이콘">
+                            </div>
+                            <div class="ai-feature-content">
+                                <div class="ai-feature-title">지능형 인사이트</div>
+                                <div class="ai-feature-desc">고객 데이터에서 유용한 인사이트를 추출하여 비즈니스 의사결정을 지원합니다.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ai-image">
+                    <img src="/api/placeholder/540/360" alt="Freddy AI 대시보드">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 통합 시너지 섹션 -->
+    <section class="synergy-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>솔루션 통합 시너지</h2>
+                <p>Freshworks 제품을 함께 사용할 때 얻을 수 있는 강력한 시너지 효과를 경험하세요.</p>
+            </div>
+            
+            <div class="synergy-flow">
+                <div class="synergy-diagram">
+                    <img src="/api/placeholder/800/300" alt="통합 솔루션 다이어그램">
+                </div>
+                
+                <div class="synergy-grid">
+                    <div class="synergy-card">
+                        <div class="synergy-icon">
+                            <img src="/api/placeholder/40/40" alt="360도 고객 뷰">
+                        </div>
+                        <h4>360도 고객 뷰</h4>
+                        <p>모든 접점에서의 고객 상호작용 데이터를 통합하여 완전한 고객 프로필을 구축합니다.</p>
+                    </div>
+                    <div class="synergy-card">
+                        <div class="synergy-icon">
+                            <img src="/api/placeholder/40/40" alt="채널 통합">
+                        </div>
+                        <h4>원활한 채널 전환</h4>
+                        <p>고객이 채널을 변경해도 이전 대화 내용이 유지되어 일관된 경험을 제공합니다.</p>
+                    </div>
+                    <div class="synergy-card">
+                        <div class="synergy-icon">
+                            <img src="/api/placeholder/40/40" alt="협업">
+                        </div>
+                        <h4>팀 간 원활한 협업</h4>
+                        <p>영업, 지원, 마케팅팀이 동일한 고객 데이터를 기반으로 원활하게 협업할 수 있습니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 에코시스템 섹션 -->
+    <section class="ecosystem-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Freshworks 에코시스템</h2>
+                <p>확장 가능한 플랫폼과 다양한 통합 옵션으로 비즈니스 니즈에 맞는 맞춤형 솔루션을 구축하세요.</p>
+            </div>
+            
+            <div class="ecosystem-features">
+                <div class="ecosystem-card">
+                    <img src="/api/placeholder/60/60" alt="마켓플레이스" class="ecosystem-icon">
+                    <h4>마켓플레이스</h4>
+                    <p>1,000개 이상의 앱과 통합 솔루션으로 기능을 확장하세요.</p>
+                </div>
+                <div class="ecosystem-card">
+                    <img src="/api/placeholder/60/60" alt="API" class="ecosystem-icon">
+                    <h4>개방형 API</h4>
+                    <p>강력한 API를 통해 기존 시스템과 쉽게 연동할 수 있습니다.</p>
+                </div>
+                <div class="ecosystem-card">
+                    <img src="/api/placeholder/60/60" alt="커스터마이징" class="ecosystem-icon">
+                    <h4>맞춤형 개발</h4>
+                    <p>비즈니스 요구사항에 맞는 맞춤형 솔루션을 개발할 수 있습니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA 섹션 -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-container">
+                <h2>고객 경험 혁신을 시작하세요</h2>
+                <p>위두소프트의 전문 컨설팅과 Freshworks 솔루션으로 고객 경험을 한 단계 높여보세요.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary">무료 상담 신청</a>
+                    <a href="#" class="btn btn-outline">솔루션 소개서 다운로드</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column footer-about">
+                    <h4>위두소프트</h4>
+                    <p>위두소프트는 글로벌 SaaS 솔루션과 맞춤형 IT 컨설팅을 제공하는 기업입니다. 비즈니스의 생산성을 높이고, 협업을 강화하며, IT 환경을 최적화하는 것이 우리의 목표입니다.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>솔루션</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">고객 경험 관리</a></li>
+                        <li><a href="#">업무 생산성</a></li>
+                        <li><a href="#">IT 인프라</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>서비스</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">컨설팅</a></li>
+                        <li><a href="#">구축 및 마이그레이션</a></li>
+                        <li><a href="#">교육 및 기술지원</a></li>
+                        <li><a href="#">유지보수</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>연락처</h4>
+                    <ul class="footer-contact">
+                        <li>📞 1234-5678</li>
+                        <li>📧 info@wedosoft.net</li>
+                        <li>🏢 서울특별시 강남구</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 위두소프트. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 탭 기능 구현
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // 모든 탭 버튼과 내용에서 active 클래스 제거
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // 클릭한 버튼과 해당 내용에 active 클래스 추가
+                    this.classList.add('active');
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // 스크롤 애니메이션
+            const scrollElements = document.querySelectorAll('.scroll-fade-in');
+            
+            function checkElements() {
+                scrollElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.classList.add('visible');
+                    }
+                });
+            }
+            
+            // 초기 체크 및 스크롤 이벤트 리스너 등록
+            checkElements();
+            window.addEventListener('scroll', checkElements);
+        });
+    </script>
+</body>
+</html>
