@@ -1,6 +1,6 @@
 <div class="solution-card">
 <?xml version="1.0" encoding="utf-8"?>
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 410 82" style="enable-background:new 0 0 410 82;" xml:space="preserve">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="213.25px" height="65px" viewBox="0 0 410 82" style="enable-background:new 0 0 410 82;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:#9B65C3;}
 	.st1{fill:#BE63C5;}
@@ -25,7 +25,7 @@
 </style>
 <g >
     <!-- 심볼 부분: 기존 .st0~.st16 클래스 그대로 사용 -->
-	<g class="logo-symbol">
+	<g>
 		<g>
 			<path class="st0" d="M0.7,52.2c1.1,7.6,4.7,14.3,9.9,19.5l11.9-11.9c0-12.1,6.3-23.8,17.5-30.2L0.7,52.2z"/>
 		</g>
